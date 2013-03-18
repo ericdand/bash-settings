@@ -99,10 +99,6 @@ On_IWhite='\e[0;107m'   # White
 Orange='\e[38;5;208m'
 IOrange='\e[38;5;202m'
 
-source /usr/local/Cellar/git/1.7.11.1/etc/bash_completion.d/git-completion.bash
-
-GIT='(__git_ps1 "(%s)")'
-
 # Sets prompt Colours
 PS1="\[$BBlue\]\u\[\e[m\] \[$Orange\]\w\[\e[m\]\$(__git_ps1) \[$IOrange\]\$ \[\e[m\]"
 

@@ -1,7 +1,7 @@
 #.bashrc
 
 # Lee's Geeky aliases
-alias ls="ls -G" 
+alias ls="ls --color -G" 
 alias rmdir="rm -r"
 alias :q="exit"
 
@@ -89,7 +89,7 @@ Orange='\e[38;5;208m'
 IOrange='\e[38;5;202m'
 
 # Sets prompt Colours
-PS1="\[$BBlue\]\u\[\e[m\] \[$IOrange\]\$ \[\e[m\]"
+PS1="\[$BBlue\]\A - \u@\w\[\e[m\] \[$IOrange\]\$ \[\e[m\]"
 
 #
 set -o vi

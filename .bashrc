@@ -1,20 +1,9 @@
 #.bashrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
-# User specific aliases and functions
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
-
 # Lee's Geeky aliases
 alias ls="ls -G" 
 alias rmdir="rm -r"
 alias :q="exit"
-
-# Update the PATH var and some other shit
-export PATH=/usr/local/share/python:/usr/local/bin:$PATH
 
 # Set Terminal to 256 Color Mode
 function EXT_COLOR () { echo -ne "\[\033[38;5;$1m\]"; }
@@ -100,7 +89,7 @@ Orange='\e[38;5;208m'
 IOrange='\e[38;5;202m'
 
 # Sets prompt Colours
-PS1="\[$BBlue\]\u\[\e[m\] \[$Orange\]\w\[\e[m\]\$(__git_ps1) \[$IOrange\]\$ \[\e[m\]"
+PS1="\[$BBlue\]\u\[\e[m\] \[$IOrange\]\$ \[\e[m\]"
 
 #
 set -o vi

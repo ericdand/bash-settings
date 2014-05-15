@@ -73,3 +73,8 @@ let g:haddock_browser = 1
 let hs_highlight_delimiters = 1
 
 map <Enter> o
+
+" Requires pathogen.vim to be in .vim/autoload/
+" Can be found at: https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+

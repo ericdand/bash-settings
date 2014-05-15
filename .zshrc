@@ -31,3 +31,7 @@ alias -s py=vim
 alias pbpaste='xsel --clipboard --output'
 alias pbcopy='xsel --clipboard --input'
 
+# Lee's Geeky aliases
+alias ls="ls --color -G"
+alias rmdir="rm -r"
+

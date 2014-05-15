@@ -1,7 +1,7 @@
 bash-settings
 =================
 
-Custom settings for bash and vim. Most of the `.bashrc` was set up by [Lee](https://github.com/lgauthie). 
+Custom settings for bash, zsh, and vim. Most of the `.bashrc` was set up by [Lee](https://github.com/lgauthie). 
 
 zsh stuff
 =========

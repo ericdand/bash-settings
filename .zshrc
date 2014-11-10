@@ -13,8 +13,8 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 
 # These need to be added to your ~/.zsh folder yourself! Search GitHub.
-source ~/.zsh/zsh-syntax-highlighting-master/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-history-substring-search-master/zsh-history-substring-search.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 #zsh-history-substring-search keybinds
 # bind UP and DOWN arrow keys
@@ -38,6 +38,7 @@ alias pbpaste='xsel --clipboard --output'
 alias pbcopy='xsel --clipboard --input'
 
 alias ls="ls --color=always --group-directories-first -lG"
+alias rmdir="rm -r"
 
 # remember to add yourself to the "dialout" group before using picocom
 alias picocom="picocom --omap delbs -c -b 115200"

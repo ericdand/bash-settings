@@ -10,4 +10,4 @@ To get the `.zshrc` working completely, you'll have to be on Linux, but anything
 
 You'll need to install `xsel` (`sudo aptitude install xsel`, or `apt-get` if you don't use `aptitude` yet). 
 
-The `.zshmods` directory is not guaranteed to have up-to-date scripts; if something doesn't work, try downloading the latest version yourself and overwriting my copy.
+You will also need to install the zsh mods yourself. Search GitHub for them!

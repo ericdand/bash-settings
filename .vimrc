@@ -1,80 +1,40 @@
-" Set nocompatible mode
 set nocompatible
-syntax on
 
-set bs=2
-
-autocmd FileType *      set formatoptions=tcql nocindent noexpandtab comments&
-autocmd FileType c,cpp  set formatoptions=croql cindent expandtab comments=sr:/*,mb:*,ex:*/
-
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd BufRead *.py set nocindent expandtab
-autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+" tab and indentation stuff
+filetype on
+" indent by filetype
 filetype plugin indent on
-
-filetype plugin on
-
-" This assumes that ghc is in your path, if it is not, or you
-" " wish to use a specific version of ghc, then please change
-" " the ghc below to a full path to the correct one
-au BufEnter *.hs compiler ghc
-"
-" " For this section both of these should be set to your
-" " browser and ghc of choice, I used the following
-" " two vim lines to get those paths:
-" " :r!which google-chrome
-" " :r!which ghc
-let g:haddock_browser = "/usr/bin/google-chrome"
-let g:ghc = "/usr/bin/ghc"
-
 set autoindent
-set autowrite
-
-set sw=4
-set notextmode
-set notextauto
-set hlsearch
-set incsearch
-nnoremap <silent> <Space> :nohlsearch<bar>:echo<CR>
-
-set tabstop=4
+" make > and < shift by 4
 set shiftwidth=4
-set softtabstop=4
+" make tabs appear as 4 spaces (instead of default 8)
+set tabstop=4
+set nowrap
 
+" show line numbers
 set number
 
-" Easy Tab Navigation
-map <C-P> :tabp<Return>
-map <C-N> :tabn<Return>
+" syntax highlighting
+syntax enable 
 
-" Auto Load Arm Syntax
-"
-let asmsyntax='armasm'
-let filetype_inc='armasm'
+" backspace over anything
+set backspace=2
 
-" Enable some better java hilighting
-"
-let java_highlight_all=1
-let java_highlight_functions=1
+" navigate using mouse
+set mouse=a
 
-" Enable full Python highlighting
-"
-let python_highlight_exceptions = 1
-let python_highlight_builtin_funcs = 1
-let python_highlight_builtin_objs = 1
-let python_slow_sync=1
-let python_highlight_all=1
+" Make .py files use spaces instead of tabs,
+" use the softtabstop feature for ease of navigation
+autocmd filetype python setlocal expandtab softtabstop=4
 
-"highlight Search ctermfg=Black ctermbg=Red cterm=NONE
-" nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" Only indent HTML by two
+autocmd filetype html setlocal shiftwidth=2 tabstop=2
 
-" Haskell
-let g:haddock_browser = 1
-let hs_highlight_delimiters = 1
+" Make the title of the window the currently-opened file.
+autocmd BufReadPost,FileReadPost,BufNewFile * silent !print -Pn "\033]0;%\007"
+" Turn it back to the currently-running process ($*) afterwards.
+" Doctor the string as necessary to turn it back to your chosen value.
+autocmd VimLeave * silent !print -Pn "\e]0;$*\a"
 
-map <Enter> o
-
-" Requires pathogen.vim to be in .vim/autoload/
-" Can be found at: https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 

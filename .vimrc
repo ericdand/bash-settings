@@ -1,3 +1,4 @@
+".vimrc
 set nocompatible
 
 " tab and indentation stuff
@@ -31,10 +32,10 @@ autocmd filetype python setlocal expandtab softtabstop=4
 autocmd filetype html setlocal shiftwidth=2 tabstop=2
 
 " Make the title of the window the currently-opened file.
-autocmd BufReadPost,FileReadPost,BufNewFile * silent !print -Pn "\033]0;%\007"
+autocmd BufReadPost,FileReadPost,BufNewFile * silent !echo -ne "\033]0;%\007"
 " Turn it back to the currently-running process ($*) afterwards.
 " Doctor the string as necessary to turn it back to your chosen value.
-autocmd VimLeave * silent !print -Pn "\e]0;$*\a"
+autocmd VimLeave * silent !echo -ne "\033]0;$*\007"
 
 execute pathogen#infect()
 

@@ -38,3 +38,7 @@ alias rmdir="rm -r"
 
 # Remember to add yourself to the "dialout" group first!
 alias picocom="picocom --omap delbs -c -b 115200"
+
+autoload -U colors && colors
+PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yellow]%}%~ %{$reset_color%}# "
+

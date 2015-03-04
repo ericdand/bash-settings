@@ -42,3 +42,29 @@ alias picocom="picocom --omap delbs -c -b 115200"
 autoload -U colors && colors
 PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yellow]%}%~ %{$reset_color%}# "
 
+# From the zsh documentation:
+# "zle-keymap-select is executed every time the keymap changes, 
+# i.e. the special parameter KEYMAP is set to a different value, 
+# while the line editor is active. 
+# Initialising the keymap when the line editor
+# starts does not cause the widget to be called. 
+# This can be used for detecting switches between the 
+# vi command (vicmd) and insert (usually main) keymaps."
+function zle-line-init zle-keymap-select {
+RPS1="%{$fg_bold[yellow]%} ${${KEYMAP/vicmd/[% NORMAL]% }/(main|viins)/}%{$reset_color%}"
+	zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# Decrease delay changing between vi modes to 0.1s.
+export KEYTIMEOUT=1
+
+# Fix "Home" and "End" keys to work properly.
+# Before this will work, you need to run `autoload zkbd; zkbd` 
+# to write the "xterm-:0.0" file to the .zkbd directory.
+autoload zkbd
+source ~/.zkbd/$TERM-:0.0
+[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
+[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line

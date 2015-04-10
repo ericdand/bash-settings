@@ -37,5 +37,11 @@ autocmd BufReadPost,FileReadPost,BufNewFile * silent !echo -ne "\033]0;%\007"
 " Doctor the string as necessary to turn it back to your chosen value.
 autocmd VimLeave * silent !echo -ne "\033]0;$*\007"
 
-execute pathogen#infect()
+" Allow the use of Ctrl-S to save.
+" Make sure that you've also disabled the 'ixon' flag in your terminal
+" by using `stty -ixon` in your .bashrc/.zshrc.
+noremap <silent>  	<C-S>	:w<CR>
+vnoremap <silent> 	<C-S>	<ESC>:w<CR>
+" See http://vim.wikia.com/wiki/Use_Ctrl-O_instead_of_Esc_in_insert_mode_mappings
+inoremap <silent> 	<C-S>	<C-O>:w<CR>
 

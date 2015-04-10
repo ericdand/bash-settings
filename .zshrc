@@ -36,12 +36,19 @@ alias pbcopy='xsel --clipboard --input'
 alias ls="ls --color=always --group-directories-first -lG"
 alias rmdir="rm -r"
 
+# "Real" Chrome is available as a .deb from Google's website.
+# Unfortunately they named it "google-chrome", which is far too long.
+alias chrome="google-chrome"
+
 # Remember to add yourself to the "dialout" group first!
 alias picocom="picocom --omap delbs -c -b 115200"
 
+# Set a cool colour prompt. B)
 autoload -U colors && colors
 PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yellow]%}%~ %{$reset_color%}# "
 
+# Set RPS1 (Right PS1) to show whether we're in vi "Normal" mode.
+#
 # From the zsh documentation:
 # "zle-keymap-select is executed every time the keymap changes, 
 # i.e. the special parameter KEYMAP is set to a different value, 
@@ -51,7 +58,7 @@ PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yell
 # This can be used for detecting switches between the 
 # vi command (vicmd) and insert (usually main) keymaps."
 function zle-line-init zle-keymap-select {
-RPS1="%{$fg_bold[yellow]%} ${${KEYMAP/vicmd/[% NORMAL]% }/(main|viins)/}%{$reset_color%}"
+RPS1="%{$fg_bold[white]%} ${${KEYMAP/vicmd/[% NORMAL]% }/(main|viins)/}%{$reset_color%}"
 	zle reset-prompt
 }
 
@@ -68,3 +75,8 @@ autoload zkbd
 source ~/.zkbd/$TERM-:0.0
 [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
 [[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+
+# Disable the ixon flag so that Ctrl-s doesn't stop the terminal.
+# This isn't necessary on all terminals, but it does no harm.
+# We map Ctrl-s to ":w" (ie. "Save") in the .vimrc.
+stty -ixon

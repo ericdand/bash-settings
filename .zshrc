@@ -2,7 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd extendedglob nomatch
+setopt appendhistory autocd extendedglob nomatch prompt_subst
 unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
@@ -45,7 +45,7 @@ alias picocom="picocom --omap delbs -c -b 115200"
 
 # Set a cool colour prompt. B)
 autoload -U colors && colors
-PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yellow]%}%~ %{$reset_color%}# "
+PS1='%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yellow]%}%~ %{$reset_color%}# '
 
 # Set RPS1 (Right PS1) to show whether we're in vi "Normal" mode.
 #
@@ -58,7 +58,7 @@ PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yell
 # This can be used for detecting switches between the 
 # vi command (vicmd) and insert (usually main) keymaps."
 function zle-line-init zle-keymap-select {
-RPS1="%{$fg_bold[white]%} ${${KEYMAP/vicmd/[% NORMAL]% }/(main|viins)/}%{$reset_color%}"
+RPS1='%{$fg_bold[white]%} ${${KEYMAP/vicmd/[% NORMAL]% }/(main|viins)/}%{$reset_color%}'
 	zle reset-prompt
 }
 

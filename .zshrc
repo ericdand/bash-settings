@@ -28,10 +28,15 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# Emulate OSX's "pbpaste" and "pbcopy" functions
-# Remember to `apt-get install xsel`.
-# alias pbpaste='xsel --clipboard --output'
-# alias pbcopy='xsel --clipboard --input'
+# Load from OS-specific scripts
+case `uname` in
+	Darwin)
+		source ~/.zsh/osx_rc.zsh
+	;;
+	Linux)
+		source ~/.zsh/linux_rc.zsh
+	;;
+esac
 
 if ls --color -d . >/dev/null 2>&1; then
 	# GNU ls
@@ -39,7 +44,13 @@ if ls --color -d . >/dev/null 2>&1; then
 elif ls -G -d . >/dev/null 2>&1; then
 	# BSD ls
 	# Almost certainly on a Mac. `brew install coreutils` to get gls.
-	alias ls="gls --color=always --group-directories-first -lG"
+	if hash gls 2>/dev/null; then
+		alias ls="gls --color=always --group-directories-first -lG"
+	else
+		echo >&2 "ls is aliased to gls, but GNU ls is not installed." 
+		echo >&2 "'brew install coreutils' to get gls."
+		echo >&2 "Then source .zshrc again to update this alias."
+	fi
 fi
 alias rmdir="rm -r"
 

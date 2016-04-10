@@ -30,10 +30,17 @@ bindkey '^[[B' history-substring-search-down
 
 # Emulate OSX's "pbpaste" and "pbcopy" functions
 # Remember to `apt-get install xsel`.
-alias pbpaste='xsel --clipboard --output'
-alias pbcopy='xsel --clipboard --input'
+# alias pbpaste='xsel --clipboard --output'
+# alias pbcopy='xsel --clipboard --input'
 
-alias ls="ls --color=always --group-directories-first -lG"
+if ls --color -d . >/dev/null 2>&1; then
+	# GNU ls
+	alias ls="ls --color=always --group-directories-first -lG"
+elif ls -G -d . >/dev/null 2>&1; then
+	# BSD ls
+	# Almost certainly on a Mac. `brew install coreutils` to get gls.
+	alias ls="gls --color=always --group-directories-first -lG"
+fi
 alias rmdir="rm -r"
 
 # "Real" Chrome is available as a .deb from Google's website.
@@ -72,7 +79,7 @@ export KEYTIMEOUT=1
 # Before this will work, you need to run `autoload zkbd; zkbd` 
 # to write the "xterm-:0.0" file to the .zkbd directory.
 autoload zkbd
-source ~/.zkbd/$TERM-:0.0
+source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
 [[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
 
@@ -80,3 +87,4 @@ source ~/.zkbd/$TERM-:0.0
 # This isn't necessary on all terminals, but it does no harm.
 # We map Ctrl-s to ":w" (ie. "Save") in the .vimrc.
 stty -ixon
+

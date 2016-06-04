@@ -38,20 +38,6 @@ case `uname` in
 	;;
 esac
 
-if ls --color -d . >/dev/null 2>&1; then
-	# GNU ls
-	alias ls="ls --color=always --group-directories-first -lG"
-elif ls -G -d . >/dev/null 2>&1; then
-	# BSD ls
-	# Almost certainly on a Mac. `brew install coreutils` to get gls.
-	if hash gls 2>/dev/null; then
-		alias ls="gls --color=always --group-directories-first -lG"
-	else
-		echo >&2 "ls is aliased to gls, but GNU ls is not installed." 
-		echo >&2 "'brew install coreutils' to get gls."
-		echo >&2 "Then source .zshrc again to update this alias."
-	fi
-fi
 alias rmdir="rm -r"
 
 # "Real" Chrome is available as a .deb from Google's website.

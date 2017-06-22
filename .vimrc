@@ -1,6 +1,8 @@
 ".vimrc
 set nocompatible
 
+execute pathogen#infect()
+
 " tab and indentation stuff
 filetype on
 " indent by filetype
@@ -12,8 +14,9 @@ set shiftwidth=4
 set tabstop=4
 set nowrap
 
-" show line numbers
+" show line and column numbers
 set number
+set ruler
 
 " syntax highlighting
 syntax enable 
@@ -24,9 +27,14 @@ set backspace=2
 " navigate using mouse
 set mouse=a
 
-" Make .py files use spaces instead of tabs,
+" Make .py files use spaces instead of tabs
 " use the softtabstop feature for ease of navigation
 autocmd filetype python setlocal expandtab softtabstop=4
+" Same for renpy, but with 2-space tabs instead
+autocmd filetype renpy setlocal expandtab shiftwidth=2 softtabstop=2
+" And with Arduino (plus we have to teach Vim about .ino files)
+autocmd BufRead,BufNewFile *.ino set filetype=arduino
+autocmd filetype arduino setlocal expandtab shiftwidth=2 softtabstop=2
 
 " Only indent HTML by two
 autocmd filetype html setlocal shiftwidth=2 tabstop=2

@@ -95,9 +95,6 @@ if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/go
 if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
 
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
 function ipjnfo() {
 	if [[ $1 =~ '-?-?h(elp)?' ]] then
 		# You didn't *really* want 'http://ipinfo.io/help', did you?

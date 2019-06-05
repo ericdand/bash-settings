@@ -49,7 +49,7 @@ alias picocom="picocom --omap delbs -c -b 115200"
 
 # Set a cool colour prompt. B)
 autoload -U colors && colors
-PS1='%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg[yellow]%}%~ %{$reset_color%}# '
+PS1='%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%M%{$reset_color%}:%{$fg[yellow]%}%~ %{$reset_color%}# '
 
 # Set RPS1 (Right PS1) to show whether we're in vi "Normal" mode.
 #
@@ -85,3 +85,31 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 # We map Ctrl-s to ":w" (ie. "Save") in the .vimrc.
 stty -ixon
 
+# Load zmv, a useful tool for batch-renaming files.
+autoload -U zmv
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+function ipjnfo() {
+	if [[ $1 =~ '-?-?h(elp)?' ]] then
+		# You didn't *really* want 'http://ipinfo.io/help', did you?
+		cat <<-EOM
+			ipjnfo queries ipinfo.io, then pipes the JSON response to jq.
+
+			usage: 
+			    ipjnfo <ipinfo-query> <jq-filter>
+			args:
+			    ipinfo-query: Everything after the '/'; e.g. '8.8.8.8' or 'google.com'
+				jq-filter: the jq filter to apply (see 'man jq')
+		EOM
+	fi
+
+	QUERY=$1
+	FILTER=$2
+	curl --silent --no-buffer -H 'Accept: application/json' ipinfo.io/${QUERY} | jq ${FILTER}
+}

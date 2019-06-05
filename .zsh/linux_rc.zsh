@@ -7,3 +7,4 @@ alias pbpaste='xsel --clipboard --output'
 alias pbcopy='xsel --clipboard --input'
 
 alias ls="ls --color=always --dereference-command-line --group-directories-first -lG"
+

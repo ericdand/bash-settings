@@ -1,8 +1,6 @@
 ".vimrc
 set nocompatible
 
-execute pathogen#infect()
-
 " tab and indentation stuff
 filetype on
 " indent by filetype
@@ -35,12 +33,11 @@ autocmd filetype renpy setlocal expandtab shiftwidth=2 softtabstop=2
 " And with Arduino (plus we have to teach Vim about .ino files)
 autocmd BufRead,BufNewFile *.ino set filetype=arduino
 autocmd filetype arduino setlocal expandtab shiftwidth=2 softtabstop=2
-
 " Only indent HTML by two
 autocmd filetype html setlocal shiftwidth=2 tabstop=2
 
 " Make the title of the window the currently-opened file.
-autocmd BufReadPost,FileReadPost,BufNewFile * silent !echo -ne "\033]0;%\007"
+autocmd BufEnter * silent !echo -ne "\033]0;%\007"
 " Turn it back to the currently-running process ($*) afterwards.
 " Doctor the string as necessary to turn it back to your chosen value.
 autocmd VimLeave * silent !echo -ne "\033]0;$*\007"

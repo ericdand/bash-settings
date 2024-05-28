@@ -87,10 +87,10 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 # This isn't necessary on all terminals, but it does no harm.
 # We map Ctrl-s to ":w" (ie. "Save") in the .vimrc.
 stty -ixon
-#
+
 # Make ~/bin the very first thing on the PATH.
 export PATH=~/bin:${PATH}
-#
+
 # Golang stuff
 export GOPATH=~/go
 export PATH=${PATH}:${GOPATH}/bin

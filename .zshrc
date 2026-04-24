@@ -98,6 +98,8 @@ export PATH=${PATH}:${GOPATH}/bin
 # I use zmv regularly. Load it automatically.
 autoload zmv
 
+alias del='unset'  # I mix up the Python `del` command for `unset` sometimes.
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
 
